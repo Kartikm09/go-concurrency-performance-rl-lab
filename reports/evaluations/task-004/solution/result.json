@@ -1,0 +1,183 @@
+{
+  "acceptance_score": 80,
+  "accepted": true,
+  "changed_files": [
+    {
+      "after_sha256": "5eb3c816d087ff2fef3830da699ebb87a99705f89f60018ff9233e9d31bdb28d",
+      "before_sha256": null,
+      "path": "CANDIDATE_NOTES.md"
+    },
+    {
+      "after_sha256": "1894526702a75481f8a1715a4fc0dd1ba95a64076be825b7abda73f693a94d71",
+      "before_sha256": "a32c52aa03c06c14807b20114023f6645c0acd7f462421f4b2ec1fd4976635e0",
+      "path": "batch/encoder.go"
+    }
+  ],
+  "classification": "accepted",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "All configured quality gates passed",
+  "score": 100,
+  "score_breakdown": {
+    "awarded": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    },
+    "functional_weight": 75,
+    "maximum": 100,
+    "score": 100,
+    "weights": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 161,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 628,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t0.390s [no tests to run]\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 1625,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.371s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestHeldOut",
+        "./..."
+      ],
+      "duration_ms": 1690,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.441s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestRegression",
+        "./..."
+      ],
+      "duration_ms": 1313,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.115s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/run_benchmark.sh"
+      ],
+      "duration_ms": 506,
+      "name": "benchmark",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "{\"metric\":\"lock_acquisitions\",\"value\":1}\n\nlock_acquisitions=1.0; threshold lower 1",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 3,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-004"
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "after_sha256": "f1ccc80ca2422f1c18c37b25098e852db59a0930f23cf66fe820f52e8c8f4839",
+    "before_sha256": "97f66058585d8614cbe0b9c2a851ccb3660e25aadd9031ab0bf17e35f5dbe661",
+    "path": "queue/queue.go"
+  }
+]

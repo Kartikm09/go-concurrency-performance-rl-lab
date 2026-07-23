@@ -1,0 +1,121 @@
+{
+  "acceptance_score": 80,
+  "accepted": false,
+  "changed_files": [
+    {
+      "after_sha256": "1d97d3762e3037518c6e211e180e41afdbce84989b625b0c7b505bb524ab9f5c",
+      "before_sha256": "a32c52aa03c06c14807b20114023f6645c0acd7f462421f4b2ec1fd4976635e0",
+      "path": "batch/encoder.go"
+    }
+  ],
+  "classification": "incomplete_solution",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "Required candidate documentation is missing",
+  "score": 25,
+  "score_breakdown": {
+    "awarded": {
+      "benchmark": 0,
+      "build": 15,
+      "determinism": 0,
+      "format": 5,
+      "held_out_tests": 0,
+      "lint": 5,
+      "public_tests": 0,
+      "regression_tests": 0
+    },
+    "functional_weight": 75,
+    "maximum": 100,
+    "missing_documentation": [
+      "CANDIDATE_NOTES.md"
+    ],
+    "score": 25,
+    "weights": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 9,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 122,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 571,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t0.351s [no tests to run]\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 691,
+      "name": "public_tests",
+      "passed": false,
+      "return_code": 1,
+      "stderr": "",
+      "stdout": "--- FAIL: TestPublicOutputCompatibility (0.00s)\n    public_test.go:13: \"{\\\"id\\\":\\\"1\\\",\\\"payload\\\":\\\"a\\\"},{\\\"id\\\":\\\"2\\\",\\\"payload\\\":\\\"b\\\"},\"\nFAIL\nFAIL\tcandidate/task4/batch\t0.428s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\nFAIL\n",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-004"
+}

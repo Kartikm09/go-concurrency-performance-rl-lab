@@ -1,0 +1,12 @@
+[
+  {
+    "after_sha256": "0c374f4011ff0f08b0f76d6b7247e9560079718bb1c012726a0ed86f64269e89",
+    "before_sha256": null,
+    "path": "CANDIDATE_NOTES.md"
+  },
+  {
+    "after_sha256": "d1ee70d4ab99343e8f9be98cd0aff6efee49e9a78d0cd7c8ddf02484ce489733",
+    "before_sha256": "d40d359cd403d94ec5bbe52506dc27d9af5fe7916cec51b4aeae97f00fa2692d",
+    "path": "pool/pool.go"
+  }
+]

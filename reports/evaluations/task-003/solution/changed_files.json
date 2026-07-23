@@ -1,0 +1,12 @@
+[
+  {
+    "after_sha256": "512f297c4e5cb0de71338e3e4f3c85087177f2427025a26eeea947d9a67d3a9a",
+    "before_sha256": null,
+    "path": "CANDIDATE_NOTES.md"
+  },
+  {
+    "after_sha256": "444e80ad452c4e3329ebb2cfa6fc0b32013ee55a18ac1ee82557ea45893b2e51",
+    "before_sha256": "a40f545ef62cafc470c8be5aa7eebd7778429614ba4343a56b77df108350ced1",
+    "path": "retry/retry.go"
+  }
+]

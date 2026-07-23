@@ -1,0 +1,12 @@
+[
+  {
+    "after_sha256": "5eb3c816d087ff2fef3830da699ebb87a99705f89f60018ff9233e9d31bdb28d",
+    "before_sha256": null,
+    "path": "CANDIDATE_NOTES.md"
+  },
+  {
+    "after_sha256": "1894526702a75481f8a1715a4fc0dd1ba95a64076be825b7abda73f693a94d71",
+    "before_sha256": "a32c52aa03c06c14807b20114023f6645c0acd7f462421f4b2ec1fd4976635e0",
+    "path": "batch/encoder.go"
+  }
+]

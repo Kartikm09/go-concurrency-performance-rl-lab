@@ -1,0 +1,7 @@
+[
+  {
+    "after_sha256": "ed2dd94ebeae09c34dbaa447bf73fbcaebc97a5b9741d10b1220e326ac676f7b",
+    "before_sha256": "a40f545ef62cafc470c8be5aa7eebd7778429614ba4343a56b77df108350ced1",
+    "path": "retry/retry.go"
+  }
+]

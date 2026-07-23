@@ -1,0 +1,86 @@
+{
+  "acceptance_score": 80,
+  "accepted": false,
+  "changed_files": [
+    {
+      "after_sha256": "f1ccc80ca2422f1c18c37b25098e852db59a0930f23cf66fe820f52e8c8f4839",
+      "before_sha256": "97f66058585d8614cbe0b9c2a851ccb3660e25aadd9031ab0bf17e35f5dbe661",
+      "path": "queue/queue.go"
+    }
+  ],
+  "classification": "incomplete_solution",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "Required candidate documentation is missing",
+  "score": 5,
+  "score_breakdown": {
+    "awarded": {
+      "build": 0,
+      "determinism": 0,
+      "format": 5,
+      "held_out_tests": 0,
+      "lint": 0,
+      "public_tests": 0,
+      "regression_tests": 0
+    },
+    "functional_weight": 85,
+    "maximum": 100,
+    "missing_documentation": [
+      "CANDIDATE_NOTES.md"
+    ],
+    "score": 5,
+    "weights": {
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 30,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 49,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 388,
+      "name": "lint",
+      "passed": false,
+      "return_code": 1,
+      "stderr": "# candidate/task2/queue\n# [candidate/task2/queue]\nvet: queue/public_test.go:10:35: undefined: ErrOverloaded\n",
+      "stdout": "",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-002"
+}

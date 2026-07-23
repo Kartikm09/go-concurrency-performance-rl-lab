@@ -1,0 +1,119 @@
+{
+  "acceptance_score": 80,
+  "accepted": false,
+  "changed_files": [
+    {
+      "after_sha256": "ed2dd94ebeae09c34dbaa447bf73fbcaebc97a5b9741d10b1220e326ac676f7b",
+      "before_sha256": "a40f545ef62cafc470c8be5aa7eebd7778429614ba4343a56b77df108350ced1",
+      "path": "retry/retry.go"
+    }
+  ],
+  "classification": "incomplete_solution",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "Required candidate documentation is missing",
+  "score": 25,
+  "score_breakdown": {
+    "awarded": {
+      "build": 15,
+      "determinism": 0,
+      "format": 5,
+      "held_out_tests": 0,
+      "lint": 5,
+      "public_tests": 0,
+      "regression_tests": 0
+    },
+    "functional_weight": 85,
+    "maximum": 100,
+    "missing_documentation": [
+      "CANDIDATE_NOTES.md"
+    ],
+    "score": 25,
+    "weights": {
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 30,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 28,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 173,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 741,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task3/retry\t0.390s [no tests to run]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 653,
+      "name": "public_tests",
+      "passed": false,
+      "return_code": 1,
+      "stderr": "",
+      "stdout": "--- FAIL: TestPublicRetryContract (0.00s)\n    public_test.go:36: err=<nil> calls=3 waits=[2 3]\nFAIL\nFAIL\tcandidate/task3/retry\t0.366s\nFAIL\n",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-003"
+}

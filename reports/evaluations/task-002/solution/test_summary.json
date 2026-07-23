@@ -1,0 +1,112 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 150,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 386,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 789,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task2/queue\t0.366s [no tests to run]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 1796,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task2/queue\t1.414s\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestHeldOut",
+        "./..."
+      ],
+      "duration_ms": 2024,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task2/queue\t1.406s\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestRegression",
+        "./..."
+      ],
+      "duration_ms": 1440,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task2/queue\t1.132s\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 26,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-002"
+}

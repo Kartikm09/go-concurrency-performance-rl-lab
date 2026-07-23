@@ -1,0 +1,7 @@
+[
+  {
+    "after_sha256": "51135e37ba898820723fdf3f1c4e5fa8967bf134e86dfaed5f7f237ae8d7f27a",
+    "before_sha256": "d40d359cd403d94ec5bbe52506dc27d9af5fe7916cec51b4aeae97f00fa2692d",
+    "path": "pool/pool.go"
+  }
+]

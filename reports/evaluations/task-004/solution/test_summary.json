@@ -1,0 +1,125 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 161,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 628,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t0.390s [no tests to run]\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 1625,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.371s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestHeldOut",
+        "./..."
+      ],
+      "duration_ms": 1690,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.441s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestRegression",
+        "./..."
+      ],
+      "duration_ms": 1313,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t1.115s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/run_benchmark.sh"
+      ],
+      "duration_ms": 506,
+      "name": "benchmark",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "{\"metric\":\"lock_acquisitions\",\"value\":1}\n\nlock_acquisitions=1.0; threshold lower 1",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 3,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-004"
+}

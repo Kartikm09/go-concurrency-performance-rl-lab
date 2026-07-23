@@ -1,0 +1,32 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 49,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 388,
+      "name": "lint",
+      "passed": false,
+      "return_code": 1,
+      "stderr": "# candidate/task2/queue\n# [candidate/task2/queue]\nvet: queue/public_test.go:10:35: undefined: ErrOverloaded\n",
+      "stdout": "",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-002"
+}

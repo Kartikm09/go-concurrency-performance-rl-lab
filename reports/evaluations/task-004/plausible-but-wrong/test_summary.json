@@ -1,0 +1,65 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 9,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "duration_ms": 122,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-run",
+        "^$",
+        "./..."
+      ],
+      "duration_ms": 571,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "ok  \tcandidate/task4/batch\t0.351s [no tests to run]\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-run",
+        "^TestPublic",
+        "./..."
+      ],
+      "duration_ms": 691,
+      "name": "public_tests",
+      "passed": false,
+      "return_code": 1,
+      "stderr": "",
+      "stdout": "--- FAIL: TestPublicOutputCompatibility (0.00s)\n    public_test.go:13: \"{\\\"id\\\":\\\"1\\\",\\\"payload\\\":\\\"a\\\"},{\\\"id\\\":\\\"2\\\",\\\"payload\\\":\\\"b\\\"},\"\nFAIL\nFAIL\tcandidate/task4/batch\t0.428s\n?   \tcandidate/task4/cmd/benchmark\t[no test files]\nFAIL\n",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-004"
+}
