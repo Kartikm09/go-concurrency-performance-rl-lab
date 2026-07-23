@@ -24,6 +24,6 @@ jobs:
           grep " ${archive}$" gitleaks_8.24.3_checksums.txt | sha256sum --check
           tar -xzf "${archive}" gitleaks
           ./gitleaks detect --source . --redact --verbose
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with: { go-version: "1.26.5" }
       - run: go run golang.org/x/vuln/cmd/govulncheck@v1.6.0 ./...
