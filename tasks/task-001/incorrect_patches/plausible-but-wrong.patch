@@ -1,0 +1,12 @@
+diff --git a/pool/pool.go b/pool/pool.go
+--- a/pool/pool.go
++++ b/pool/pool.go
+@@ -37,7 +37,7 @@
+ 		return errors.New("busy")
+ 	}
+ }
+-func (p *Pool) Stop() { p.stopped = true; p.cancel(); p.wg.Wait() }
++func (p *Pool) Stop() { p.stopped = true; p.cancel(); return }
+ func (p *Pool) work() {
+ 	defer p.wg.Done()
+ 	for job := range p.jobs {

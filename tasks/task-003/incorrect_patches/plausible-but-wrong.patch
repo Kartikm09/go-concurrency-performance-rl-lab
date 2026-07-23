@@ -1,0 +1,39 @@
+diff --git a/retry/retry.go b/retry/retry.go
+--- a/retry/retry.go
++++ b/retry/retry.go
+@@ -5,15 +5,31 @@
+ 	"time"
+ )
+ 
+-func Do(ctx context.Context, attempts int, operation func(context.Context) error, retryable func(error) bool, sleep func(time.Duration)) error {
++type Transport interface{ Execute(context.Context) error }
++type Classifier interface{ Retryable(error) bool }
++type Backoff interface {
++	Wait(context.Context, int) error
++}
++type LinearBackoff struct {
++	Unit  time.Duration
++	Sleep func(time.Duration)
++}
++
++func (b LinearBackoff) Wait(_ context.Context, attempt int) error {
++	b.Sleep(time.Duration(attempt) * b.Unit)
++	return nil
++}
++func Do(ctx context.Context, attempts int, transport Transport, classifier Classifier, backoff Backoff) error {
+ 	var err error
+ 	for attempt := 1; attempt <= attempts; attempt++ {
+-		err = operation(ctx)
+-		if err == nil || !retryable(err) {
++		err = transport.Execute(ctx)
++		if err == nil || !classifier.Retryable(err) {
+ 			return err
+ 		}
+ 		if attempt < attempts {
+-			sleep(time.Duration(attempt) * time.Millisecond)
++			if waitErr := backoff.Wait(ctx, attempt+1); waitErr != nil {
++				return waitErr
++			}
+ 		}
+ 	}
+ 	return err

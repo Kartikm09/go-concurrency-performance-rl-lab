@@ -1,0 +1,14 @@
+diff --git a/queue/queue.go b/queue/queue.go
+--- a/queue/queue.go
++++ b/queue/queue.go
+@@ -2,8 +2,8 @@
+ 
+ type Queue struct{ items []string }
+ 
+-func New() *Queue                    { return &Queue{} }
+-func (q *Queue) Enqueue(item string) { q.items = append(q.items, item) }
++func New(_ int) *Queue                     { return &Queue{} }
++func (q *Queue) Enqueue(item string) error { q.items = append(q.items, item); return nil }
+ func (q *Queue) Dequeue() (string, bool) {
+ 	if len(q.items) == 0 {
+ 		return "", false

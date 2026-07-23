@@ -1,0 +1,35 @@
+diff --git a/CANDIDATE_NOTES.md b/CANDIDATE_NOTES.md
+new file mode 100644
+--- /dev/null
++++ b/CANDIDATE_NOTES.md
+@@ -0,0 +1,3 @@
++# Candidate Notes
++
++Takes the encoder lock once per batch and reuses one JSON encoder/buffer, preserving ordered newline-delimited output and synchronization.
+diff --git a/batch/encoder.go b/batch/encoder.go
+--- a/batch/encoder.go
++++ b/batch/encoder.go
+@@ -16,17 +16,14 @@
+ }
+ 
+ func (e *Encoder) Encode(events []Event) ([]byte, error) {
++	e.mu.Lock()
++	defer e.mu.Unlock()
++	e.lockCount++
+ 	var output bytes.Buffer
++	encoder := json.NewEncoder(&output)
++	encoder.SetEscapeHTML(false)
+ 	for _, event := range events {
+-		e.mu.Lock()
+-		e.lockCount++
+-		encoded, err := json.Marshal(event)
+-		if err == nil {
+-			output.Write(encoded)
+-			output.WriteByte('\n')
+-		}
+-		e.mu.Unlock()
+-		if err != nil {
++		if err := encoder.Encode(event); err != nil {
+ 			return nil, err
+ 		}
+ 	}

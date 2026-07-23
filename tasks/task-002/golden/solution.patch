@@ -1,0 +1,69 @@
+diff --git a/CANDIDATE_NOTES.md b/CANDIDATE_NOTES.md
+new file mode 100644
+--- /dev/null
++++ b/CANDIDATE_NOTES.md
+@@ -0,0 +1,3 @@
++# Candidate Notes
++
++Enforces capacity under one mutex and records accepted/rejected outcomes in the same transition, preserving FIFO and avoiding background work.
+diff --git a/queue/queue.go b/queue/queue.go
+--- a/queue/queue.go
++++ b/queue/queue.go
+@@ -1,10 +1,45 @@
+ package queue
+ 
+-type Queue struct{ items []string }
++import (
++	"errors"
++	"sync"
++)
+ 
+-func New() *Queue                    { return &Queue{} }
+-func (q *Queue) Enqueue(item string) { q.items = append(q.items, item) }
++var ErrOverloaded = errors.New("queue overloaded")
++
++type Stats struct {
++	Accepted uint64
++	Rejected uint64
++	Depth    int
++}
++type Queue struct {
++	mu       sync.Mutex
++	capacity int
++	items    []string
++	accepted uint64
++	rejected uint64
++}
++
++func New(capacity int) *Queue {
++	if capacity <= 0 {
++		panic("capacity must be positive")
++	}
++	return &Queue{capacity: capacity, items: make([]string, 0, capacity)}
++}
++func (q *Queue) Enqueue(item string) error {
++	q.mu.Lock()
++	defer q.mu.Unlock()
++	if len(q.items) == q.capacity {
++		q.rejected++
++		return ErrOverloaded
++	}
++	q.items = append(q.items, item)
++	q.accepted++
++	return nil
++}
+ func (q *Queue) Dequeue() (string, bool) {
++	q.mu.Lock()
++	defer q.mu.Unlock()
+ 	if len(q.items) == 0 {
+ 		return "", false
+ 	}
+@@ -12,3 +47,8 @@
+ 	q.items = q.items[1:]
+ 	return item, true
+ }
++func (q *Queue) Stats() Stats {
++	q.mu.Lock()
++	defer q.mu.Unlock()
++	return Stats{q.accepted, q.rejected, len(q.items)}
++}

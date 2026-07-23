@@ -1,0 +1,12 @@
+diff --git a/batch/encoder.go b/batch/encoder.go
+--- a/batch/encoder.go
++++ b/batch/encoder.go
+@@ -23,7 +23,7 @@
+ 		encoded, err := json.Marshal(event)
+ 		if err == nil {
+ 			output.Write(encoded)
+-			output.WriteByte('\n')
++			output.WriteByte(',')
+ 		}
+ 		e.mu.Unlock()
+ 		if err != nil {
