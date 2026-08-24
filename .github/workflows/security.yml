@@ -25,5 +25,5 @@ jobs:
           tar -xzf "${archive}" gitleaks
           ./gitleaks detect --source . --redact --verbose
       - uses: actions/setup-go@v7
-        with: { go-version: "1.26.5" }
+        with: { go-version: "1.26.6" }
       - run: go run golang.org/x/vuln/cmd/govulncheck@v1.6.0 ./...
