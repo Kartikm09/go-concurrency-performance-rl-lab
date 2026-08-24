@@ -8,7 +8,7 @@ environments. It demonstrates goroutine lifecycle ownership, context cancellatio
 backpressure, deduplication, race-safe metrics, deterministic retry testing, fuzzing,
 and benchmark-backed performance work.
 
-**Toolchain:** Go 1.26.5, modules, gofmt, go vet, race detector, native fuzzing and
+**Toolchain:** Go 1.26.6, modules, gofmt, go vet, race detector, native fuzzing and
 benchmarks, and pinned golangci-lint 2.12.2.
 
 > Independent proof of work using synthetic payloads and tasks only. No company,
