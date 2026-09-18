@@ -31,3 +31,14 @@ func TestDeterministicAttempts(t *testing.T) {
 		t.Fatalf("err=%v calls=%d waits=%v", err, calls, waits.attempts)
 	}
 }
+
+func TestNonpositiveAttemptBudgetIsRejected(t *testing.T) {
+	for _, attempts := range []int{0, -1} {
+		calls := 0
+		waits := &recorder{}
+		err := Do(context.Background(), attempts, classifier(true), waits, func(context.Context) error { calls++; return nil })
+		if !errors.Is(err, ErrInvalidAttempts) || calls != 0 || len(waits.attempts) != 0 {
+			t.Fatalf("attempts=%d err=%v calls=%d", attempts, err, calls)
+		}
+	}
+}

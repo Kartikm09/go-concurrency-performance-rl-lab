@@ -1,7 +1,12 @@
 // Package retry separates retry classification, timing, and transport work.
 package retry
 
-import "context"
+import (
+	"context"
+	"errors"
+)
+
+var ErrInvalidAttempts = errors.New("attempts must be positive")
 
 type Classifier interface{ Retryable(error) bool }
 type Backoff interface {
@@ -10,6 +15,9 @@ type Backoff interface {
 type Operation func(context.Context) error
 
 func Do(ctx context.Context, attempts int, classifier Classifier, backoff Backoff, operation Operation) error {
+	if attempts < 1 {
+		return ErrInvalidAttempts
+	}
 	var err error
 	for attempt := 1; attempt <= attempts; attempt++ {
 		if err = operation(ctx); err == nil || !classifier.Retryable(err) {

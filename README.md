@@ -8,7 +8,7 @@ environments. It demonstrates goroutine lifecycle ownership, context cancellatio
 backpressure, deduplication, race-safe metrics, deterministic retry testing, fuzzing,
 and benchmark-backed performance work.
 
-**Toolchain:** Go 1.26.5, modules, gofmt, go vet, race detector, native fuzzing and
+**Toolchain:** Go 1.26.8, modules, gofmt, go vet, race detector, native fuzzing and
 benchmarks, and pinned golangci-lint 2.12.2.
 
 > Independent proof of work using synthetic payloads and tasks only. No company,
@@ -103,3 +103,15 @@ should run only in an externally isolated, credential-free environment.
 Storage and metrics are in-memory abstractions, payloads are synthetic, and the service
 is a compact reliability model rather than a distributed webhook platform. Deterministic
 work metrics stabilize scoring; benchmark timings remain machine-dependent.
+
+## September reliability repair
+
+Webhook IDs are remembered only when bounded queue admission succeeds. A full queue returns
+429 without consuming the idempotency key; retry after draining returns 202 and enqueues once.
+Concurrent duplicates still share one admitted job. Nonpositive retry budgets return
+`retry.ErrInvalidAttempts` before executing work.
+
+The supported toolchain is Go 1.26.8, which fixes standard-library advisories detected by the
+repository's security workflow. Historical task baselines retain their original files and run
+under the current evaluator toolchain. The admission ID set is process-local and unbounded;
+it is not a durable receipt store. See [repair evidence](docs/verified-repair.md).

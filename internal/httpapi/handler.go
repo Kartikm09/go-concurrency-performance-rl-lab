@@ -38,13 +38,16 @@ func (h *Handler) ingest(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "invalid request", http.StatusBadRequest)
 		return
 	}
-	if !h.dedupe.First(request.ID) {
-		w.WriteHeader(http.StatusOK)
-		return
-	}
-	if err := h.queue.Enqueue(queue.Job{ID: request.ID, Payload: []byte(request.Payload)}); err != nil {
+	first, err := h.dedupe.Admit(request.ID, func() error {
+		return h.queue.Enqueue(queue.Job{ID: request.ID, Payload: []byte(request.Payload)})
+	})
+	if err != nil {
 		h.metrics.Rejected()
 		http.Error(w, "overloaded", http.StatusTooManyRequests)
+		return
+	}
+	if !first {
+		w.WriteHeader(http.StatusOK)
 		return
 	}
 	h.metrics.Accepted()

@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-18",
+  "baseline_sha": "4fed237c457eedc83a222ead72b375cebb0ad14a",
+  "platform": "macOS arm64, credential-free Seatbelt",
+  "toolchain": "go1.26.8",
+  "commands": [
+    {
+      "command": "make setup && make verify-all && make fuzz && make benchmark",
+      "exit_code": 0
+    },
+    {
+      "command": "go run golang.org/x/vuln/cmd/govulncheck@v1.6.0 ./...",
+      "exit_code": 0,
+      "result": "No vulnerabilities found."
+    }
+  ],
+  "counts": {
+    "native_test_functions": 8,
+    "fuzz_functions": 1,
+    "python_evaluator_tests": 6,
+    "reference_controls_accepted": 4,
+    "existing_negative_controls_rejected": 12,
+    "fuzz_executions": 18428
+  },
+  "limits": [
+    "Source digests link this record to inspected files; this is self-recorded evidence, not an independently signed attestation.",
+    "Native historical controls are unchanged; task-002 plausible wrong patch fails vet rather than a behavioral assertion.",
+    "Benchmark timings are one-machine observations, without a before/after comparison."
+  ],
+  "source_files": [
+    {
+      "path": "benchmarks/batch_test.go",
+      "sha256": "7e0234b2975b7c6cd8ef619aa892caed29d598ca7957bfd9c416c7caa9974e12"
+    },
+    {
+      "path": "cmd/api/main.go",
+      "sha256": "e34ea1bb805ec05ac0aa1911915f1000a5cbd91cbb4d5d202bce24a88b4a55ec"
+    },
+    {
+      "path": "cmd/worker/main.go",
+      "sha256": "1cfd8ca645cd4f7bfe77fc3d184a19f8bfe181568ec7e5a71c8e412cb99dcb19"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/__init__.py",
+      "sha256": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/cli.py",
+      "sha256": "161ccb3de5c499833d291dc5982608f5f16cdccd8d03fd48cb40e1dcb4fc7319"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/config.py",
+      "sha256": "0b74c5e14a143b92c5e77f5ef5b3bdccb8a429638dc143ec0fe00bb73bd74032"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/limits.py",
+      "sha256": "c0aab939ddd8c7760832c0668d009232074ec22f6139356c45f69b43a98f2da8"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/patching.py",
+      "sha256": "88c9219d26905b236997bb04c881d8d374816f69739cb3041fe4f17d91f9f54e"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/process.py",
+      "sha256": "1856322c73031199e5aed6ae254f6646069afe76d79e90e562c3ee7134865668"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/reporting.py",
+      "sha256": "b0621b1489ddc393fe7ba928995b387b444e71a74e9a8bb6a3ce147967f7e748"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/schemas.py",
+      "sha256": "10e11f4412149cd8a760c8cdb83fa2f84bcc4d3965945b388723c9fdde4890d6"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/scoring.py",
+      "sha256": "4e9b3ca2d85f3afc1efa259144f1877b82305874b852c8e330c1ef11ce309a3e"
+    },
+    {
+      "path": "evaluator/src/rl_evaluator/workspace.py",
+      "sha256": "536f524b4a5e6772f472e44c7c140961fd411427a267a475eb3ddf5fee9ab905"
+    },
+    {
+      "path": "evaluator/tests/test_limits.py",
+      "sha256": "26ab2c4746e5d7cd45af26f4e29be0c8bb640ff5476af6325250806c1f61e99e"
+    },
+    {
+      "path": "evaluator/tests/test_patching.py",
+      "sha256": "b43049736897cc0d3c502dc5021b602e2e83c25f27250ba9b244c87ae904e7fe"
+    },
+    {
+      "path": "evaluator/tests/test_scoring.py",
+      "sha256": "a8ba87be7432a4e2b4a2ac2a9940e2ae96e6dc836029bb918ea126c556abcb0a"
+    },
+    {
+      "path": "evaluator/tests/test_workspace.py",
+      "sha256": "e239e30803e7c3e616f143408a3026b1c95b48f915d4220a46ffb8b629f056bd"
+    },
+    {
+      "path": "go.mod",
+      "sha256": "2e45b7c5b80aee310a1973d7453f2d75fca14f65797a8c4e9f73564cb1d79afe"
+    },
+    {
+      "path": "internal/dedupe/dedupe.go",
+      "sha256": "aa71a904e633b90429492e939dde7f206779adb8c01f3c5e73ec47ba3c060e6f"
+    },
+    {
+      "path": "internal/httpapi/handler.go",
+      "sha256": "3a79841f3774242b9a6ccf8fa5f410086666f9905a2928a5407afab29f52090f"
+    },
+    {
+      "path": "internal/httpapi/handler_test.go",
+      "sha256": "214efcda78827c27b6bb6375fc0dbf7ab7d6b932fc8c486c331831d6419ee169"
+    },
+    {
+      "path": "internal/metrics/metrics.go",
+      "sha256": "01984b96cf31ecda6c0ac73010792beb6cde7c89ed598cb787b2d0afcf0ba39e"
+    },
+    {
+      "path": "internal/queue/queue.go",
+      "sha256": "9a72733c4e802ab7dcf150d393e9ee7f1a0f728397547e29b370dbbe5f90215b"
+    },
+    {
+      "path": "internal/queue/queue_test.go",
+      "sha256": "eea26141ba0b6357bf8953b9689ce804996ea4734b8899374fb3884931fc3a1f"
+    },
+    {
+      "path": "internal/retry/retry.go",
+      "sha256": "9bec24245f9fc352f35558d146a2b012453f2f4e6c65bad712306c2c846d282e"
+    },
+    {
+      "path": "internal/retry/retry_test.go",
+      "sha256": "563618455b5dd6d3ff602a313ff4c450424035a5527884c05a12097e5d6705ea"
+    },
+    {
+      "path": "internal/store/store.go",
+      "sha256": "023fe4d3dde8353c88c4301357a6a4f8bcde15dc2e9225f8b81c1b04457ab448"
+    },
+    {
+      "path": "internal/worker/pool.go",
+      "sha256": "00404bf665127eec177b1be65c1f3f75738e6481db9a20577e26ebff3a02d0af"
+    },
+    {
+      "path": "internal/worker/pool_test.go",
+      "sha256": "6d7d0fd0d7d83624a65215b18ecfe8a75b3241984c7fa64f033cd79216d90256"
+    },
+    {
+      "path": "scripts/secret_scan.py",
+      "sha256": "22bf4a0e79e09682698048c4ec08e368988ab6b4b47f719b244c21cde8b9faf4"
+    },
+    {
+      "path": "scripts/validate_repository.py",
+      "sha256": "794842e9779b394246e0fda91d2315ccc3d6067bfb064627376ee05adc7f0219"
+    },
+    {
+      "path": "scripts/verify_evaluations.py",
+      "sha256": "1ccd8f8988e2dbe76835eff1bd9d34989c2e4162b867281a41398af73976bf2b"
+    },
+    {
+      "path": "tasks/task-001/baseline/workspace/go.mod",
+      "sha256": "3b7f4286e792b8f44f2b1c995609fc20ad2689041fd79d08a492507097b5d774"
+    },
+    {
+      "path": "tasks/task-001/baseline/workspace/pool/pool.go",
+      "sha256": "d40d359cd403d94ec5bbe52506dc27d9af5fe7916cec51b4aeae97f00fa2692d"
+    },
+    {
+      "path": "tasks/task-001/evaluator_config.json",
+      "sha256": "7018fdb0fee24404cda047601342129d058baad89a1954ec78a590d633d046c1"
+    },
+    {
+      "path": "tasks/task-001/fixtures/stress.json",
+      "sha256": "ef41c232bbd810767d210e0aa57adb785df74813f6b2753bc996b89d3ba1cfc3"
+    },
+    {
+      "path": "tasks/task-001/go.mod",
+      "sha256": "dcddcbd5b792a70485933a8fa654fc9a6e34435d4805786e14e6099e29e7406c"
+    },
+    {
+      "path": "tasks/task-001/held_out_tests/pool/held_out_test.go",
+      "sha256": "662fde6db65917ed96a9a3b96c34c9b8d79c5d25f0231fb0939040b2fb686668"
+    },
+    {
+      "path": "tasks/task-001/held_out_tests/pool/regression_test.go",
+      "sha256": "6df5093ec77c04b8bb4ba13abd30af569050aa319de07dba186feb981c1dd3fe"
+    },
+    {
+      "path": "tasks/task-001/public_tests/pool/public_test.go",
+      "sha256": "eefc27c04df4cdc097f2fa055db3800b9f93b8c982428c6562fc85d9347314fb"
+    },
+    {
+      "path": "tasks/task-002/baseline/workspace/go.mod",
+      "sha256": "cd7a23b2adf9568f8b90e3ccbe21e5c07ec10df9118406639c3823453cb3fe0b"
+    },
+    {
+      "path": "tasks/task-002/baseline/workspace/queue/queue.go",
+      "sha256": "97f66058585d8614cbe0b9c2a851ccb3660e25aadd9031ab0bf17e35f5dbe661"
+    },
+    {
+      "path": "tasks/task-002/evaluator_config.json",
+      "sha256": "6c34935479bb077c7c79fb91dc830c62066a699132a7eb07ac5efa220b264b3a"
+    },
+    {
+      "path": "tasks/task-002/fixtures/capacity.json",
+      "sha256": "0a3b7f1fb0c8f73caedc111e7070b7a423b18a96481023cefdb51f066e79c63d"
+    },
+    {
+      "path": "tasks/task-002/go.mod",
+      "sha256": "549bf8d2a04457d1e7de82e7e21fb8a94825e78e3701093766ec73a0e92a6944"
+    },
+    {
+      "path": "tasks/task-002/held_out_tests/queue/held_out_test.go",
+      "sha256": "c1ec4746e0a0e2be9e9722fdc9ba8f53eeac0eb17dfb778c805b054cc47b56cf"
+    },
+    {
+      "path": "tasks/task-002/held_out_tests/queue/regression_test.go",
+      "sha256": "f19d737bc9520d6b446f6e385d97dad671cd6d590a8b6d180c2c0b2d1d681bb0"
+    },
+    {
+      "path": "tasks/task-002/public_tests/queue/public_test.go",
+      "sha256": "244be81e604cf25258289c09a47e8aee6243148031838483952e242c54ac84d4"
+    },
+    {
+      "path": "tasks/task-003/baseline/workspace/go.mod",
+      "sha256": "9b364d056dad5fbd7579d39c35c964c849d82b8dd8c5575f0507e949061cc6e5"
+    },
+    {
+      "path": "tasks/task-003/baseline/workspace/retry/retry.go",
+      "sha256": "a40f545ef62cafc470c8be5aa7eebd7778429614ba4343a56b77df108350ced1"
+    },
+    {
+      "path": "tasks/task-003/evaluator_config.json",
+      "sha256": "b3d92eb60b4dfb90faea3e92792f90ec7afd7f29cc405b59f1c259e5b9acdd06"
+    },
+    {
+      "path": "tasks/task-003/go.mod",
+      "sha256": "87433e49689ea05bdbebb963e86fb3b81bced5ee546caa4424a3872f73da6b0b"
+    },
+    {
+      "path": "tasks/task-003/held_out_tests/retry/held_out_test.go",
+      "sha256": "2d599cd59202f42d8056fdffe5bf88074d058158ba21d88f7ce2826d660a79e8"
+    },
+    {
+      "path": "tasks/task-003/held_out_tests/retry/regression_test.go",
+      "sha256": "0824e16deed6c60b05c2cc921f5ed729f9f97666f16b9488fad12fdcd20cc31f"
+    },
+    {
+      "path": "tasks/task-003/public_tests/retry/public_test.go",
+      "sha256": "a20cb49d0eee9a27d619d777ff2ece609eace2822dab2864f42f3a05cc13c6d0"
+    },
+    {
+      "path": "tasks/task-004/baseline/workspace/batch/encoder.go",
+      "sha256": "a32c52aa03c06c14807b20114023f6645c0acd7f462421f4b2ec1fd4976635e0"
+    },
+    {
+      "path": "tasks/task-004/baseline/workspace/cmd/benchmark/main.go",
+      "sha256": "517492889016ea96b4e49c91a3ed942f6c2af78bc2d8aa36e35e15656732b25c"
+    },
+    {
+      "path": "tasks/task-004/baseline/workspace/go.mod",
+      "sha256": "9ec0ee7c0975b3f79580c8231b45eb0008c0486e4b2907cdc6f1e1a14ab9c3db"
+    },
+    {
+      "path": "tasks/task-004/evaluator_config.json",
+      "sha256": "fc615c9290cf980247126ef1b7e375e9a17cb79a364078a020da06f5b44c9879"
+    },
+    {
+      "path": "tasks/task-004/fixtures/events.json",
+      "sha256": "c2faa0e8623091187860567a8d3f418c366b67a700f5bb4c0a8f37d292baf845"
+    },
+    {
+      "path": "tasks/task-004/go.mod",
+      "sha256": "aae30fcd66e45364d35d094f75f9c981c0e9c9a8412c554561a721f829d12739"
+    },
+    {
+      "path": "tasks/task-004/held_out_tests/batch/held_out_test.go",
+      "sha256": "d342ecb9137fe4a87910f883637fb4fd8d24752edb8e8c0899598594d302623c"
+    },
+    {
+      "path": "tasks/task-004/held_out_tests/batch/regression_test.go",
+      "sha256": "8515df1756f0afaa7d409eb423eb01cbea021fb2a4c78542ad954dad1c5dfa1f"
+    },
+    {
+      "path": "tasks/task-004/public_tests/batch/public_test.go",
+      "sha256": "fa95c7eb6c8b34f644fa7af8bd22596ead28193fe1491533d657c1db5eeeaa23"
+    }
+  ]
+}
